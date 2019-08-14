@@ -1,4 +1,4 @@
-module github.com/ipfans/echo-session
+module github.com/vladivolo/echo-session
 
 go 1.12
 
