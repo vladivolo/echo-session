@@ -25,7 +25,7 @@ type cookieStore struct {
 	*sessions.CookieStore
 }
 
-func (c *cookieStore) Options(options Options) {
+func (c *cookieStore) Options(options sessions.Options) {
 	c.CookieStore.Options = &sessions.Options{
 		Path:     options.Path,
 		Domain:   options.Domain,

@@ -31,7 +31,7 @@ type postgresStore struct {
 	*pgstore.PGStore
 }
 
-func (p *postgresStore) Options(options Options) {
+func (p *postgresStore) Options(options sessions.Options) {
 	p.PGStore.Options = &sessions.Options{
 		Path:     options.Path,
 		Domain:   options.Domain,

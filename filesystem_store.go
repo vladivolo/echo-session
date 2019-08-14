@@ -29,7 +29,7 @@ type filesystemStore struct {
 	*sessions.FilesystemStore
 }
 
-func (s *filesystemStore) Options(options Options) {
+func (s *filesystemStore) Options(options sessions.Options) {
 	s.FilesystemStore.Options = &sessions.Options{
 		Path:     options.Path,
 		Domain:   options.Domain,

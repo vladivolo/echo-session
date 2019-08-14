@@ -75,7 +75,7 @@ type redisStore struct {
 	*redistore.RediStore
 }
 
-func (c *redisStore) Options(options Options) {
+func (c *redisStore) Options(options sessions.Options) {
 	c.RediStore.Options = &sessions.Options{
 		Path:     options.Path,
 		Domain:   options.Domain,

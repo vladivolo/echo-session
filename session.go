@@ -16,24 +16,9 @@ const (
 
 type Store interface {
 	sessions.Store
-	Options(Options)
+	Options(sessions.Options)
 	MaxAge(int)
 }
-
-// Options stores configuration for a session or session store.
-// Fields are a subset of http.Cookie fields.
-type Options struct {
-	Path   string
-	Domain string
-	// MaxAge=0 means no 'Max-Age' attribute specified.
-	// MaxAge<0 means delete cookie now, equivalently 'Max-Age: 0'.
-	// MaxAge>0 means Max-Age attribute present and given in seconds.
-	MaxAge   int
-	Secure   bool
-	HttpOnly bool
-}
-
-// Wraps thinly gorilla-session methods.
 
 // Session stores the values and optional configuration for a session.
 type Session interface {
@@ -54,7 +39,7 @@ type Session interface {
 	// If not defined "_flash" is used by default.
 	Flashes(vars ...string) []interface{}
 	// Options sets confuguration for a session.
-	Options(Options)
+	Options(sessions.Options)
 	// Save saves all sessions used during the current request.
 	Save() error
 }
@@ -111,7 +96,7 @@ func (s *session) Flashes(vars ...string) []interface{} {
 	return s.Session().Flashes(vars...)
 }
 
-func (s *session) Options(options Options) {
+func (s *session) Options(options sessions.Options) {
 	s.Session().Options = &sessions.Options{
 		Path:     options.Path,
 		Domain:   options.Domain,
